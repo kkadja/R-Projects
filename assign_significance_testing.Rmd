@@ -1,0 +1,58 @@
+## ---- (a) Parameter being tested ----
+# The population mean IQ, μ.
+
+## ---- (b) Hypotheses (increase) ----
+# H0: μ = mu0
+# Ha: μ > mu0
+
+## ---- (c) Test statistic (one-sample Z) ----
+z <- (xbar - mu0) / (sigma / sqrt(n))
+z
+
+## ---- (d) p-value (right-tailed) ----
+pval <- 1 - pnorm(z)
+pval
+
+## ---- (e) Decision at level alpha ----
+decision <- if (pval < alpha) "Reject H0" else "Fail to reject H0"
+decision
+
+## ---- (f) conclusion ----
+# Example template: 
+# if (decision == "Reject H0") 
+#   cat("There is statistically significant evidence at the", alpha, 
+#       "level that the medication increases average IQ.\n")
+# else 
+#   cat("There is not sufficient evidence at the", alpha, 
+#       "level that the medication increases average IQ.\n")
+
+## ---- (g) Could a Type I error have occurred? ----
+# Yes, only if you rejected H0. A Type I error is rejecting a true H0.
+
+## ---- (h) Could a Type II error have occurred? ----
+# Yes, only if you failed to reject H0. A Type II error is failing to reject a false H0.
+
+## ---- (i) Decision rule: critical xbar for right-tailed Z-test ----
+z_alpha <- qnorm(1 - alpha)           
+xbar_crit <- mu0 + z_alpha * (sigma / sqrt(n))
+xbar_crit  # reject H0 if xbar >= xbar_crit
+
+## ---- (j) If threshold is increased to 107, what's alpha? ----
+xbar_thresh <- 107                      
+alpha_from_thresh <- 1 - pnorm( (xbar_thresh - mu0) / (sigma / sqrt(n)) )
+alpha_from_thresh
+
+## ---- (k) If we reject H0 when xbar >= xbar_thresh, what's beta at a given true mu? ----
+mu_true <- 102  
+beta_at_mu_true <- pnorm( (xbar_thresh - mu_true) / (sigma / sqrt(n)) )
+beta_at_mu_true
+
+## ---- (l) Sequence of mu values and (m) corresponding Type II error rates ----
+mu_vals <- seq(101, 115, by = 0.2)
+beta_vals <- pnorm( (xbar_thresh - mu_vals) / (sigma / sqrt(n)) )
+
+## ---- (n) Plot β(μ) with vertical line at mu0 ----
+plot(mu_vals, beta_vals, type = "l",
+     xlab = expression(mu), ylab = expression(beta(mu)),
+     ylim = c(0, 1))
+abline(v = mu0, lty = 2)
