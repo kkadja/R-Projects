@@ -1,0 +1,58 @@
+
+```{r setup, include=FALSE}
+# Do not edit this code block/chunk
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
+```
+
+1. A garage door sales company notes that about 70% of their customers purchase a chaindriven model. Suppose a random sample of 18 customers are selected. What is the probability that:
+
+A. Fifteen of the customers have a chain-driven model?
+
+```{r}
+dbinom(x = 15, size = 18, prob = 0.7)
+```
+
+B. All of the customers have a chain-driven model?
+
+```{r}
+dbinom(x = 18, size = 18, prob = 0.7)
+```
+
+C. At most 14 of the customers have a chain-driven model?
+
+```{r}
+pbinom(q = 14, size = 18, prob = 0.7)
+```
+
+
+D. More than 12 of the customers have a chain-driven model?
+
+```{r}
+1 - pbinom(q = 12, size = 18, prob = 0.7)
+```
+
+2. Consider writing to a computer disk and then sending the disk through a certifier that counts the number of missing pulses. Suppose a disk is selected at random and sent through the certifier when, on average, 1.85 pulses are missing per disk. What is the probability that:
+
+A. One pulse is missing?
+
+```{r}
+dpois(x = 1, lambda = 1.85)
+```
+
+B. More than 3 pulses are missing?
+
+```{r}
+1 - ppois(q = 3, lambda = 1.85)
+```
+
+C. At most 3 pulses are missing?
+
+```{r}
+ppois(q = 3, lambda = 1.85)
+```
+
+D. Fewer than 5 pulses are missing?
+
+```{r}
+ppois(q = 4, lambda = 1.85)
+```

@@ -1,0 +1,59 @@
+
+```{r setup, include=FALSE}
+# Do not edit this code block/chunk
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
+```
+
+
+1. Look up the help documentation for the function `rep()`. Use this function to create the following 3 vectors.
+
+a. [1] 0 0 0 0 0
+
+```{r}
+rep(0, times = 5)
+```
+
+b. [1] 1 2 3 1 2 3 1 2 3 1 2 3
+
+```{r}
+rep(c(1, 2, 3), times = 4)
+```
+
+c. [1] 4 5 5 6 6 6
+
+```{r}
+rep(4:6, times = 1:3)
+```
+
+
+2. Load the *mtcars* dataset by using the code `data(mtcars)`.  What are the units of observation? How many unit of observations does this dataset have? How many variables?  Remember that wherever possible, you will need to use R code to answer the questions. The dataset's help documentation `? mtcars` might be useful.
+
+```{r}
+#Each unit of observation is a car model
+#There are 32 observations and 11 variables in this dataset.
+data(mtcars)
+dim(mtcars)  # Shows number of observations and variables
+```
+
+3. Explain what is the problem in each line of code below. Fix the code so it will run properly. 
+
+a. my variable = 3
+
+```{r}
+# underscore needed, variable names cannot have spaces
+my_variable <- 3
+```
+
+b. seq(1, 10 by = 2)
+
+```{r}
+# comma missing, incorrect parameter syntax
+seq(1, 10, by = 2)
+```
+
+c. Class(c(1,2,3))
+
+```{r}
+# class should be lower case
+class(c(1, 2, 3))
+```
